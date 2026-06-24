@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="editTask()">
+        <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="task">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ task.title }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-badge [color]="task.completed ? 'success' : 'warning'">
+          {{ task.completed ? 'Completada' : 'Pendiente' }}
+        </ion-badge>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ task.description }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" fill="outline" [color]="task.completed ? 'warning' : 'success'" (click)="toggleStatus()" class="ion-margin-top">
+    Marcar como {{ task.completed ? 'Pendiente' : 'Completada' }}
+  </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="confirmDelete()" class="ion-margin-top">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Eliminar Tarea
+  </ion-button>
+</ion-content>
